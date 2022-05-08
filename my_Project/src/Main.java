@@ -13,8 +13,6 @@ import java.sql.*;
 import java.io.IOException;
 import java.util.Scanner;
 
-
-
 public class Main extends Application {
     Scanner sc = new Scanner(System.in);
     @FXML
@@ -41,8 +39,8 @@ public class Main extends Application {
     TextField idNumber;
     @FXML
     Button allDel;
-
-
+    @FXML
+    Button inform;
     Statement stmt;
     Connection conn;
 
@@ -59,10 +57,24 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch();
     }
+    public void initialize() throws SQLException {
+        ObservableList<String> observableList = FXCollections.observableArrayList(arr2);
+        ListVF.setItems(observableList);
+        ListVT.setItems(observableList);
+        crNewDataBase();
+        crNewTable();
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+        Scene sc = new Scene(root);
+        primaryStage.setTitle("Переводчик");
+        primaryStage.setScene(sc);
+        primaryStage.show();
+    }
 
     public void crNewDataBase() throws SQLException {
-
-
         String url = "jdbc:sqlite:C:/Users/user/Desktop/SQLITE/" + dbName;
         Connection conn = DriverManager.getConnection(url);
         try {
@@ -75,8 +87,8 @@ public class Main extends Application {
             System.out.println("Что то не так.");
         }
     }
-    static String url = "jdbc:sqlite:C:/Users/user/Desktop/SQLITE/" + dbName;
 
+    static String url = "jdbc:sqlite:C:/Users/user/Desktop/SQLITE/" + dbName;
     public  void crNewTable(){
         System.out.println(url);
 
@@ -88,7 +100,7 @@ public class Main extends Application {
                 + " TextOut text \n"
                 + ");";
         try {
-             conn = DriverManager.getConnection(url);
+            conn = DriverManager.getConnection(url);
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
             System.out.println("Готово1");
@@ -97,29 +109,6 @@ public class Main extends Application {
             System.out.println(e);
         }
     }
-
-    public void initialize() throws SQLException {
-
-        ObservableList<String> observableList = FXCollections.observableArrayList(arr2);
-        ListVF.setItems(observableList);
-        ListVT.setItems(observableList);
-
-        crNewDataBase();
-        crNewTable();
-
-
-    }
-
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
-        Scene sc = new Scene(root);
-        primaryStage.setTitle("Переводчик");
-        primaryStage.setScene(sc);
-        primaryStage.show();
-    }
-
 
     public void trans(ActionEvent actionEvent) throws IOException {
         otLang = String.valueOf(ListVF.getSelectionModel().getSelectedItems());
@@ -131,7 +120,6 @@ public class Main extends Application {
                 break;
             }
         }
-
         toLang = String.valueOf(ListVT.getSelectionModel().getSelectedItems());
         for (int i = 0; i < arr.length; i++) {
             if (toLang.equals(arr[i])) {
@@ -140,15 +128,11 @@ public class Main extends Application {
                 break;
             }
         }
-
-
         text = inArea.getText();
-
         res = Translator.translate(otLang, toLang, text);
         outArea.setText(res);
         insert(otLang, toLang, text, res);
     }
-
 
      public void insert(String langot, String langto, String textin, String textout) {
          if (checkBox.isSelected() == true) {
@@ -168,7 +152,6 @@ public class Main extends Application {
                  pstmt.executeUpdate();
              } catch (Exception e) {
                  System.out.println(e);
-                 System.out.println("Неуд");
              }
 
          }
@@ -219,7 +202,6 @@ public class Main extends Application {
     }
 
     public void allDel(ActionEvent actionEvent) throws SQLException {
-        System.out.println(stmt);
         conn = DriverManager.getConnection(url);
         stmt = conn.createStatement();
         conn.setAutoCommit(false);
@@ -229,17 +211,16 @@ public class Main extends Application {
             stmt.close();
             conn.commit();
             conn.close();
-            System.out.println("таблица удалена");
             crNewTable();
-            System.out.println("таблица создана");
             createDialog("Системная информация","База данных успешно очищена","Нажмите ОК для подтверждения.");
 
         }
         catch (SQLException e){
             System.out.println(e);
-            System.out.println("Не раб");
+
         }
     }
+
     public void createDialog(String t, String h, String c){
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle(t);
@@ -248,6 +229,9 @@ public class Main extends Application {
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.show();
     }
-
-
+    
+    public void inform(ActionEvent actionEvent) {
+        createDialog("О программе!","Приложение на Java, интерфейс JavaFX, база данных SQLite, сервер script.google.com","Создатель: Малышев Илья Александрович"+"\n"+
+                "Моя почта: mia74chel@mail.ru");
+    }
 }
