@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="454.0" minWidth="10.0" prefWidth="303.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" prefWidth="297.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="474.2" minWidth="10.0" prefWidth="467.2" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" prefWidth="334.00000000000006" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="200.8" minHeight="10.0" prefHeight="109.19999809265136" vgrow="SOMETIMES" />
@@ -65,7 +65,7 @@
          </children>
       </GridPane>
       <TextArea fx:id="inArea" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-      <TextArea fx:id="outArea" prefHeight="137.0" prefWidth="341.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextArea fx:id="outArea" prefHeight="116.0" prefWidth="470.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <TextArea fx:id="dbOutArea" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" GridPane.rowSpan="2" />
       <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
         <columnConstraints>

@@ -81,7 +81,7 @@ public class Main extends Application {
 
             if (conn != null) {
                 DatabaseMetaData meta = conn.getMetaData();
-                System.out.println("Готово");
+
             }
         } catch (Exception e) {
             System.out.println("Что то не так.");
@@ -90,7 +90,6 @@ public class Main extends Application {
 
     static String url = "jdbc:sqlite:C:/Users/user/Desktop/SQLITE/" + dbName;
     public  void crNewTable(){
-        System.out.println(url);
 
         String sql = "CREATE TABLE IF NOT EXISTS langarray(\n"
                 + " id integer PRIMARY KEY,\n"
@@ -103,7 +102,7 @@ public class Main extends Application {
             conn = DriverManager.getConnection(url);
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
-            System.out.println("Готово1");
+
         } catch (Exception e) {
             System.out.println("Что то не так2.");
             System.out.println(e);
@@ -137,17 +136,16 @@ public class Main extends Application {
      public void insert(String langot, String langto, String textin, String textout) {
          if (checkBox.isSelected() == true) {
              String sql = "INSERT INTO langarray(LangFrom, LangTo, TextIn, TextOut) VALUES(?,?,?,?)";
-             System.out.println(sql);
-             System.out.println("conn" + conn);
+
              try {
                  PreparedStatement pstmt = conn.prepareStatement(sql);
-                 System.out.println(langot);
+
                  pstmt.setString(1, langot);
-                 System.out.println(langto);
+
                  pstmt.setString(2, langto);
-                 System.out.println(textin);
+
                  pstmt.setString(3, textin);
-                 System.out.println(textout);
+             
                  pstmt.setString(4, textout);
                  pstmt.executeUpdate();
              } catch (Exception e) {
