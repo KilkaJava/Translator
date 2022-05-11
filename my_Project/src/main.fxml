@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -43,25 +44,50 @@
          </children>
       </GridPane>
       <GridPane GridPane.columnIndex="1">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.8" minWidth="1.9999969005584717" prefWidth="128.60003623962402" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="346.0000030994415" minWidth="10.0" prefWidth="218.999963760376" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <Button fx:id="delete" mnemonicParsing="false" onAction="#del" text="Очистить" GridPane.columnIndex="1">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button fx:id="translate" mnemonicParsing="false" onAction="#trans" text="Перевести" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
+            <GridPane alignment="CENTER" prefHeight="100.0" prefWidth="271.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="224.2" minWidth="1.9999969005584717" prefWidth="213.8" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="346.0000030994415" minWidth="10.0" prefWidth="121.40000000000003" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="47.4" minHeight="10.0" prefHeight="45.4" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="28.4" minHeight="4.199999999999996" prefHeight="5.199999999999996" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                     <image>
+                        <Image url="@Cube.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="delete" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#del" text="Очистить">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="translate" mnemonicParsing="false" onAction="#trans" text="Перевести" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
          </children>
       </GridPane>
       <TextArea fx:id="inArea" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />

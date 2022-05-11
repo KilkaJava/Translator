@@ -8,13 +8,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import javax.swing.text.html.ImageView;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.*;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Main extends Application {
     Scanner sc = new Scanner(System.in);
+    @FXML
+    ImageView img_view;
     @FXML
     ListView ListVF;
     @FXML
@@ -50,19 +57,21 @@ public class Main extends Application {
     String toLang = "ru";
     String text = "";
     String res = "";
-    String arr2[] = {"Русский", "Английский", "Немецкий", "Французкий"};
-    String arr[] = {"[Русский]", "[Английский]", "[Немецкий]", "[Французкий]"};
-    String arr1[] = {"ru", "en", "de", "fr"};
+    String arr2[] = {"Русский", "Английский", "Немецкий", "Французкий","Китайский","Испанский"};
+    String arr[] = {"[Русский]", "[Английский]", "[Немецкий]", "[Французкий]", "[Китайский]", "[Испанский]"};
+    String arr1[] = {"ru", "en", "de", "fr", "zh","es"};
 
     public static void main(String[] args) {
         launch();
     }
-    public void initialize() throws SQLException {
+    public void initialize() throws SQLException, FileNotFoundException {
         ObservableList<String> observableList = FXCollections.observableArrayList(arr2);
         ListVF.setItems(observableList);
         ListVT.setItems(observableList);
         crNewDataBase();
         crNewTable();
+
+
     }
 
     @Override
@@ -72,6 +81,8 @@ public class Main extends Application {
         primaryStage.setTitle("Переводчик");
         primaryStage.setScene(sc);
         primaryStage.show();
+
+
     }
 
     public void crNewDataBase() throws SQLException {
@@ -145,7 +156,7 @@ public class Main extends Application {
                  pstmt.setString(2, langto);
 
                  pstmt.setString(3, textin);
-             
+
                  pstmt.setString(4, textout);
                  pstmt.executeUpdate();
              } catch (Exception e) {
